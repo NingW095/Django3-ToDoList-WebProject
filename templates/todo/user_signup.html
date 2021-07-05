@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+{% extends 'todo/base.html' %}
+
+{% block body_block %}
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-5">
+            <h2>Sign up!</h2>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-3">
+        <div class="col-md-5">
+            {% if error %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endif %}
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" class="form-control" id="username" aria-describedby="usernameHelp" required>
+                    <small id="usernameHelp" class="form-text text-muted">150 characters or fewer. Letters, digits and @/./+/-/_ only.</small>
+                </div>
+                <div class="form-group">
+                    <label for="password1">Password</label>
+                    <input type="password" name="password1" class="form-control" id="password1" required>
+                </div>
+                <div class="form-group">
+                    <label for="password2">Confirm Password</label>
+                    <input type="password" name="password2" class="form-control" id="password2" aria-describedby="confirm" required>
+                    <small id="confirm" class="form-text text-muted">Enter the same password as before, for verification.</small>
+                </div>
+                <button type="submit" class="btn btn-info">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+<!--
+<form method="post">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <button type="submit">Sign up</button>
+</form>
+-->
+
+{% endblock %}

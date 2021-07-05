@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% extends 'todo/base.html' %}
+
+{% block body_block %}
+        <div class="container mt-5">
+        <div class="col-md-10">
+            {% if all_completed_todos %}
+                <h1>{{ all_completed_todos.count }} Completed Todo{{ all_completed_todos.count|pluralize }}</h1>
+            {% else %}
+                <h1>OOPs, it seems you haven't completed any todo!</h1>
+            {% endif %}
+        </div>
+    </div>
+    <div class="container mt-5">
+        <div class="col-md-10">
+        {% if all_completed_todos %}
+            <div class="list-group">
+                {% for todo in all_completed_todos %}
+                    <a href="{% url 'view_todo' todo.id %}" class="list-group-item list-group-item-action{% if todo.important %} list-group-item-danger{% endif %}">
+                        <b>{{ todo.title }}</b>  --Completed {{ todo.date_completed|date:'M j Y H:i' }}</a>
+                {% endfor %}
+            </div>
+        {% endif %}
+        </div>
+    </div>
+
+
+{% endblock %}
